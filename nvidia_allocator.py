@@ -154,6 +154,9 @@ def assign_gpu(vmid, node, gpu, gpu_type):
 
     config['args'] = ' '.join(arguments)
 
+    if 'hookscript' not in config or not config['hookscript']:
+        config['hookscript'] = 'local:snippets/nvidia_allocator.py'
+
     tags = set()
     if 'tags' in config and config['tags']:
         # Parse tags
